@@ -1,4 +1,9 @@
-<h1> {{greeting}} </h1>
-<app-users></app-users>
-<hr>
-<app-posts></app-posts>
+<ul>
+  <li><a [routerLink]="['home']">home</a></li>
+  <li><a routerLink="users">users</a></li>
+  <li><a [routerLink]="['posts']">posts</a></li>
+  <li><a [routerLink]="['comments']"> comments</a></li>
+</ul>
+
+<router-outlet></router-outlet>
+

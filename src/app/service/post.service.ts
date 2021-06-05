@@ -19,4 +19,11 @@ export class PostService {
   }
 
 
+  getPost(id: string): Observable<Post>{
+    return this.httpClient.get<Post>(this.url + '/' + id);
+  }
+
+
+
+
 }
