@@ -7,13 +7,15 @@ import { HttpClientModule} from "@angular/common/http";
 import { UserComponent } from './components/user/user.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
-import {Router, RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './components/home/home.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
 import {DeactivatorService} from "./service/deactivator.service";
 import { CommentsComponent } from './components/comments/comments.component';
 import {ResolveService} from "./service/resolve.service";
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentDetailsComponent } from './components/comment-details/comment-details.component';
 
 
 let routes: Routes = [
@@ -23,7 +25,8 @@ let routes: Routes = [
     },
     {path: 'posts', component: PostsComponent, canDeactivate: [DeactivatorService]},
     {path: 'posts/:id', component: PostDetailsComponent, canActivate: [DeactivatorService]},
-    {path: 'comments', component: CommentsComponent, resolve: {data: ResolveService}}
+    {path: 'comments', component: CommentsComponent,
+      children: [{path: ':id', component: CommentDetailsComponent }]}
 ]
 
 @NgModule({
@@ -36,7 +39,9 @@ let routes: Routes = [
     HomeComponent,
     UserDetailsComponent,
     PostDetailsComponent,
-    CommentsComponent
+    CommentsComponent,
+    CommentComponent,
+    CommentDetailsComponent
   ],
   imports: [
     BrowserModule,
