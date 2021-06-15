@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {DataTransferService} from "./services/data-transfer.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  greeting = 'Hello';
+  constructor() {
+
+  }
 }
