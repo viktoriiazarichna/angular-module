@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../models/User";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import { User } from 'src/app/models/User';
+
 
 @Component({
   selector: 'app-user',
@@ -11,9 +13,22 @@ export class UserComponent implements OnInit {
   @Input()
   user: User;
 
-  constructor() { }
+  @Output()
+  lift = new EventEmitter();
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
+  userDetails() {
+    this.router.navigate(['detailsFromState', this.user.id], {
+      relativeTo: this.activatedRoute,
+      state: this.user
+    })
+  }
+
+  lifting(): void {
+    this.lift.emit(this.user);
+  }
 }
